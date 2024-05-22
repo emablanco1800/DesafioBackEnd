@@ -41,8 +41,8 @@ productsRouter.post('/', async (req, res) =>{
         const { title, description, price, code ,stock, status = true, category } = req.body;
         const response = await productManager.addProduct({ title, description, price ,code ,stock, status, category})
         res.json(response)
-    //     let products = req.body; //VER ESTO
-    // products.push(products)
+        let products = req.body; //VER ESTO
+    products.push(products)
     }catch (error){
         console.log(error);
         res.send(`ERROR AL INTENTAR AGREGAR PRODUCTO`)
@@ -73,4 +73,4 @@ productsRouter.delete('/:pid', async (req, res) => {
     }
 })
 
-export { Router as productsRouter}
+export { productsRouter }
