@@ -3,6 +3,10 @@ import { productManager } from '../index.js';
 
 const productsRouter = Router()
 
+
+// http://localhost:8080/products
+// TRAER TODOS LOS PRODUCTOS QUE TENGA EN EL PRODUCTS.JSON Y SI RECIBO UN LIMITE TRAER HASTA ESE LIMITE
+
 productsRouter.get('/', async (req, res) =>{
     try {
         const { limit } = req.query;
@@ -14,8 +18,9 @@ productsRouter.get('/', async (req, res) =>{
         }
 
         return res.json(products)
+
     } catch (error){
-        console.log(error)
+        console.log(error);
         res.send('ERROR AL INTENTAR RECIBIR LOS PRODUCTOS')
     }
 })
@@ -36,8 +41,8 @@ productsRouter.post('/', async (req, res) =>{
         const { title, description, price, code ,stock, status = true, category } = req.body;
         const response = await productManager.addProduct({ title, description, price ,code ,stock, status, category})
         res.json(response)
-        let products = req.body;
-    products.push(products)
+    //     let products = req.body; //VER ESTO
+    // products.push(products)
     }catch (error){
         console.log(error);
         res.send(`ERROR AL INTENTAR AGREGAR PRODUCTO`)
@@ -53,7 +58,7 @@ productsRouter.put('/:pid', async (req, res) => {
         res.json(response)
     }catch (error){
         console.log(error);
-        res.send(`ERROR AL INTENTAR EITAR PRODUCTO CON ID ${pid}`)
+        res.send(`ERROR AL INTENTAR EDITAR PRODUCTO CON ID ${pid}`)
     }
 })
 
